@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dhakal Multi Store - Your One-Stop Shop</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet" />
+
+    <!-- AOS Animation Library -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet" />
+
+    <style>
+      :root {
+        --primary-color: #3a6ea5;
+        --secondary-color: #ff6b6b;
+        --accent-color: #f9c74f;
+        --text-color: #333;
+        --light-bg: #f8f9fa;
+        --dark-bg: #343a40;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text-color);
+        overflow-x: hidden;
+      }
+
+      /* Logo Styling */
+      .logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        color: var(--primary-color);
+      }
+
+      /* Navigation */
+      .navbar {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 0.5rem 1rem;
+      }
+
+      .nav-link {
+        color: var(--text-color);
+        font-weight: 500;
+        margin: 0 0.5rem;
+        position: relative;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color);
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary-color);
+        transition: width 0.3s;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        color: var(--primary-color);
+        transition: transform 0.3s, color 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.pexels.com/photos/3962294/pexels-photo-3962294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 150px 0;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .btn-custom {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 10px 25px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .btn-custom:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 80px 0;
+        background-color: var(--light-bg);
+      }
+
+      .feature-box {
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        background-color: white;
+        transition: transform 0.3s, box-shadow 0.3s;
+        height: 100%;
+      }
+
+      .feature-box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+      }
+
+      /* About Section */
+      .about {
+        padding: 80px 0;
+      }
+
+      .about-img {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-img img {
+        transition: transform 0.5s;
+        width: 100%;
+      }
+
+      .about-img:hover img {
+        transform: scale(1.05);
+      }
+
+      .section-title {
+        position: relative;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: var(--secondary-color);
+        margin-top: 15px;
+      }
+
+      /* Products Section */
+      .products {
+        padding: 80px 0;
+        background-color: var(--light-bg);
+      }
+
+      .product-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-bottom: 30px;
+        background-color: white;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .product-body {
+        padding: 20px;
+      }
+
+      .product-title {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .product-price {
+        color: var(--secondary-color);
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: 80px 0;
+      }
+
+      .contact-info {
+        margin-bottom: 40px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .contact-icon {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-right: 15px;
+      }
+
+      .form-control {
+        border-radius: 0;
+        border: none;
+        border-bottom: 2px solid #ddd;
+        padding: 15px 0;
+        margin-bottom: 20px;
+        transition: border-color 0.3s;
+      }
+
+      .form-control:focus {
+        box-shadow: none;
+        border-color: var(--primary-color);
+      }
+
+      .map-container {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--dark-bg);
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 1.8rem;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .footer-about {
+        margin-bottom: 30px;
+      }
+
+      .footer-heading {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .footer-heading::after {
+        content: "";
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: var(--secondary-color);
+        margin-top: 10px;
+      }
+
+      .footer-links a {
+        display: block;
+        color: #adb5bd;
+        margin-bottom: 10px;
+        transition: color 0.3s, transform 0.3s;
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        transform: translateX(5px);
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+      }
+
+      .footer-social a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .footer-social a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-5px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Animation Classes */
+      .animated-element {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s, transform 0.6s;
+      }
+
+      .animated-element.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Fixes */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .navbar-collapse {
+          background-color: white;
+          padding: 15px;
+          border-radius: 5px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icons {
+          margin-top: 15px;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+          <a class="navbar-brand logo" href="index.html">DMS</a>
+
+          <div class="social-icons d-lg-none order-lg-last">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="services.html">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+              </li>
+            </ul>
+
+            <div class="social-icons d-none d-lg-flex">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="animated-element">Welcome to Dhakal Multi Store</h1>
+            <p class="animated-element">
+              Your trusted source for quality products for over a decade. We
+              provide a wide range of products to meet the diverse needs of our
+              customers.
+            </p>
+            <a href="#" class="btn btn-custom animated-element"
+              >Explore Our Products</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-lg-6 mx-auto">
+            <h2 class="section-title text-center">Why Choose Us</h2>
+            <p>Experience the difference with Dhakal Multi Store</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-crown"></i>
+              </div>
+              <h4>Quality Products</h4>
+              <p>
+                We offer only the highest quality products sourced from trusted
+                suppliers.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-tags"></i>
+              </div>
+              <h4>Best Prices</h4>
+              <p>
+                Competitive pricing without compromising on quality or service.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <h4>Excellent Support</h4>
+              <p>
+                Our dedicated team is always ready to assist you with any
+                questions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+            <div class="about-img">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/003/416/724/non_2x/the-building-of-the-store-and-supermarket-and-interior-free-vector.jpg"
+                alt="Dhakal Multi Store"
+                class="img-fluid" />
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left">
+            <h2 class="section-title">About Dhakal Multi Store</h2>
+            <p>
+              Welcome to Dhakal Multi Store, your trusted source for quality
+              products for over a decade. Our store is located in the heart of
+              Shankharapur, specifically at Shankharapur 01 Nanglebhare.
+            </p>
+            <p>
+              We pride ourselves on delivering exceptional customer service and
+              providing a wide range of products to meet the diverse needs of
+              our customers. With over 10 years of experience in the industry,
+              we have established a reputation for excellence and have become a
+              cornerstone of the community.
+            </p>
+            <p>
+              Our team of dedicated professionals is committed to ensuring that
+              every customer's experience is a pleasant one, from the moment
+              they step through our doors.
+            </p>
+            <a href="about.html" class="btn btn-custom mt-3"
+              >Learn More About Us</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-lg-6 mx-auto">
+            <h2 class="section-title text-center">Our Featured Products</h2>
+            <p>Discover our most popular items</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="product-card">
+              <img
+                src="https://img.freepik.com/premium-vector/grocery-store-shelves-filled-with-products-vertical-vector-background_1322560-55008.jpg"
+                alt="Groceries"
+                class="img-fluid" />
+              <div class="product-body">
+                <h4 class="product-title">Groceries</h4>
+                <p>Fresh and packaged groceries for your daily needs.</p>
+                <a href="#" class="btn btn-sm btn-custom">View Collection</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="product-card">
+              <img
+                src="https://img.freepik.com/premium-vector/electrician-tools-vector-set_8071-31985.jpg"
+                alt="Electric Items"
+                class="img-fluid" />
+              <div class="product-body">
+                <h4 class="product-title">Electric Items</h4>
+                <p>
+                  A wide range of electrical products including bulbs, switches,
+                  wires, MCB, etc.
+                </p>
+                <a href="#" class="btn btn-sm btn-custom">View Collection</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="product-card">
+              <img
+                src="https://img.freepik.com/free-vector/tools-shop-showcase-assortment-painting-building-home-repair-renovation-carpentry-work-constructor-hardware-store-stand-with-housekeeping-equipment_575670-1298.jpg"
+                alt="Hardware and Plastic Products"
+                class="img-fluid" />
+              <div class="product-body">
+                <h4 class="product-title">Hardware and Plastic Products</h4>
+                <p>
+                  Essential hardware and plastic items including fasteners,
+                  tools, pipes, and containers for everyday use.
+                </p>
+                <a href="#" class="btn btn-sm btn-custom">View Collection</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="product-card">
+              <img
+                src="https://media.istockphoto.com/id/1010054996/vector/petrol-station-gas-fuel-shop-icons-set-flat-style.jpg?s=612x612&w=0&k=20&c=DyoXHy8Rmn2rHxaT2JcPCwouDpW4EeVCrFhCdHTXNSk="
+                alt="Petroleum Products"
+                class="img-fluid" />
+              <div class="product-body">
+                <h4 class="product-title">Petroleum Products</h4>
+                <p>
+                  A range of petroleum products like fuels, oils, and lubricants
+                  for various applications.
+                </p>
+                <a href="#" class="btn btn-sm btn-custom">View Collection</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="product-card">
+              <img
+                src="https://img.freepik.com/free-vector/pesticides-fertilizers-horizontal-background-set-with-pest-control-symbols-flat-isolated-vector-illustration_98292-3401.jpg"
+                alt="Pesticides and Insecticides"
+                class="img-fluid" />
+              <div class="product-body">
+                <h4 class="product-title">Pesticides and Insecticides</h4>
+                <p>
+                  Effective pesticides and insecticides for protecting crops and
+                  environments from harmful pests.
+                </p>
+                <a href="#" class="btn btn-sm btn-custom">View Collection</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="product-card">
+              <img
+                src="https://c8.alamy.com/comp/DD9C96/england-cornwall-staustell-the-eden-project-shop-display-of-seeds-DD9C96.jpg"
+                alt="Seasonal Plant Seeds"
+                class="img-fluid" />
+              <div class="product-body">
+                <h4 class="product-title">Seasonal Plant Seeds</h4>
+                <p>
+                  High-quality seasonal plant seeds for gardening, including
+                  fruits, vegetables, and flowers.
+                </p>
+                <a href="#" class="btn btn-sm btn-custom">View Collection</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-lg-6 mx-auto">
+            <h2 class="section-title text-center">Contact Us</h2>
+            <p>We'd love to hear from you!</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+            <div class="contact-info">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h5 class="m-0">Address</h5>
+                  <p>Shankharapur 01 Nanglebhare, Kathmandu, Nepal</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                  <h5 class="m-0">Phone</h5>
+                  <p>9840566159, 9860142850, 9840524753</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h5 class="m-0">Email</h5>
+                  <p>
+                    info@dhakalmultistore.com.np<br />
+                    support@dhakalmultistore.com.np<br />
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3521.2700970172955!2d85.53315429999999!3d27.764670199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb0184c86ad069%3A0xfa9938efa1de08dd!2sDhakal%20Multi%20Store!5e1!3m2!1sen!2snp!4v1742568760599!5m2!1sen!2snp"
+                width="100%"
+                height="300"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left">
+            <form>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Your Name"
+                  required />
+              </div>
+
+              <div class="mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your Email"
+                  required />
+              </div>
+
+              <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Subject" />
+              </div>
+
+              <div class="mb-3">
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  placeholder="Your Message"
+                  required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-custom w-100">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="footer-logo">DMS</div>
+            <div class="footer-about">
+              <p>
+                Dhakal Multi Store - your trusted source for quality products
+                for over a decade. Located in the heart of Shankharapur.
+              </p>
+            </div>
+            <div class="footer-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+            <h4 class="footer-heading">Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="services.html">Services</a>
+
+              <a href="about.html">About Us</a>
+              <a href="contact.html">Contact Us</a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <h4 class="footer-heading">Products</h4>
+            <div class="footer-links">
+              <a href="#">Groceries</a>
+              <a href="#">Home Essentials</a>
+              <a href="#">Electronics</a>
+              <a href="#">Hardware and Plastic Products</a>
+              <a href="#">Petroleum Products</a>
+              <a href="#">Pesticides and Insecticides</a>
+              <a href="#">Seasonal Plant Seeds</a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <h4 class="footer-heading">Contact Info</h4>
+            <div class="footer-links">
+              <a href="#"
+                ><i class="fas fa-map-marker-alt me-2"></i> Shankharapur 01
+                Nanglebhare</a
+              >
+              <a href="tel:9840566159"
+                ><i class="fas fa-phone me-2"></i> 9840566159</a
+              >
+              <a href="mailto:info@dhakalmultistore"
+                ><i class="fas fa-envelope me-2"></i>
+                info@dhakalmultistore.com.np</a
+              >
+
+              <a href="#"><i class="fas fa-clock me-2"></i> Open: 7am - 8pm</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="m-0">
+            &copy; 2025 Dhakal Multi Store. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- nepali translate-->
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,ne",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Custom Scripts -->
+    <script>
+      // Initialize AOS animations
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+        });
+
+        // Add animation class to hero elements
+        const animatedElements = document.querySelectorAll(".animated-element");
+        setTimeout(() => {
+          animatedElements.forEach((el) => {
+            el.classList.add("visible");
+          });
+        }, 300);
+
+        // Add padding to body to account for fixed navbar
+        const navbar = document.querySelector(".navbar");
+        document.body.style.paddingTop = navbar.offsetHeight + "px";
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

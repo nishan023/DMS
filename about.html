@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Dhakal Multi Store</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet" />
+
+    <!-- AOS Animation Library -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet" />
+
+    <style>
+      :root {
+        --primary-color: #3a6ea5;
+        --secondary-color: #ff6b6b;
+        --accent-color: #f9c74f;
+        --text-color: #333;
+        --light-bg: #f8f9fa;
+        --dark-bg: #343a40;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text-color);
+        overflow-x: hidden;
+      }
+
+      /* Logo Styling */
+      .logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        color: var(--primary-color);
+      }
+
+      /* Navigation */
+      .navbar {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 0.5rem 1rem;
+      }
+
+      .nav-link {
+        color: var(--text-color);
+        font-weight: 500;
+        margin: 0 0.5rem;
+        position: relative;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color);
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary-color);
+        transition: width 0.3s;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        color: var(--primary-color);
+        transition: transform 0.3s, color 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Page Header */
+      .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.pexels.com/photos/3962294/pexels-photo-3962294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+      }
+
+      .page-header h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .page-header p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .btn-custom {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 10px 25px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .btn-custom:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Section Styling */
+      .section-py {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        position: relative;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: var(--secondary-color);
+        margin-top: 15px;
+      }
+
+      .text-center .section-title::after {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* About Image */
+      .about-img {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-img img {
+        transition: transform 0.5s;
+        width: 100%;
+      }
+
+      .about-img:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Milestones */
+      .milestones {
+        display: flex;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .milestone-item {
+        text-align: center;
+      }
+
+      .milestone-item h3 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .text-primary {
+        color: var(--primary-color) !important;
+      }
+
+      /* Values Cards */
+      .value-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        height: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .value-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+      }
+
+      /* Team Cards */
+      .team-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .team-card img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 20px auto 0;
+        display: block;
+      }
+
+      .team-card h4 {
+        margin-top: 20px;
+        margin-bottom: 5px;
+      }
+
+      .team-card p {
+        margin-bottom: 20px;
+      }
+
+      /* Map Container */
+      .map-container {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        height: 300px;
+        margin-bottom: 20px;
+      }
+
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--dark-bg);
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 1.8rem;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .footer-social a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .footer-social a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-5px);
+      }
+
+      .footer h5 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        color: white;
+      }
+
+      .footer h5::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        transform: translateX(5px);
+      }
+
+      .footer-contact p {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .footer-contact i {
+        color: var(--primary-color);
+        font-size: 18px;
+        margin-top: 2px;
+      }
+
+      .footer-newsletter p {
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .newsletter-form {
+        display: flex;
+        margin-bottom: 15px;
+      }
+
+      .newsletter-form input {
+        flex: 1;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 30px 0 0 30px;
+        outline: none;
+      }
+
+      .newsletter-form button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 0 30px 30px 0;
+        padding: 0 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .newsletter-form button:hover {
+        background-color: var(--secondary-color);
+      }
+
+      .footer-bottom {
+        padding-top: 20px;
+        margin-top: 40px;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* Responsive Fixes */
+      @media (max-width: 768px) {
+        .page-header h1 {
+          font-size: 2.5rem;
+        }
+
+        .navbar-collapse {
+          background-color: white;
+          padding: 15px;
+          border-radius: 5px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icons {
+          margin-top: 15px;
+          justify-content: center;
+        }
+
+        .milestones {
+          flex-direction: column;
+          gap: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+          <a class="navbar-brand logo" href="index.html">DMS</a>
+
+          <div class="social-icons d-lg-none order-lg-last">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="services.html">Services</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+              </li>
+            </ul>
+
+            <div class="social-icons d-none d-lg-flex">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>About Dhakal Multi Store</h1>
+            <p>
+              Learn about our story, values, and the team behind our success
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section-py">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+            <div class="about-img">
+              <img
+                src="https://img.freepik.com/free-vector/happy-united-business-team_74855-6520.jpg?semt=ais_hybrid"
+                alt="Our Store"
+                class="img-fluid" />
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <h2 class="section-title">Our Story</h2>
+            <p class="lead">
+              Founded in 2013, Dhakal Multi Store has been a cornerstone of the
+              Shankharapur community. What began as a small family business has
+              grown into a trusted destination for quality products and
+              exceptional service.
+            </p>
+            <p>
+              Our journey started with a simple mission: to provide our
+              neighbors with reliable access to daily essentials. Over the
+              years, we've expanded our offerings while maintaining our
+              commitment to quality and community values.
+            </p>
+            <p>
+              Today, we're proud to serve the Nanglebhare area and beyond,
+              offering a wide range of products including groceries, household
+              items, electronics, and much more. Our dedication to customer
+              satisfaction and community support has helped us build lasting
+              relationships with our patrons.
+            </p>
+
+            <div class="milestones">
+              <div class="milestone-item" data-aos="zoom-in">
+                <h3 class="text-primary">10+</h3>
+                <p>Years of Service</p>
+              </div>
+              <div
+                class="milestone-item"
+                data-aos="zoom-in"
+                data-aos-delay="100">
+                <h3 class="text-primary">5000+</h3>
+                <p>Satisfied Customers</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section-py bg-light">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="section-title">Our Core Values</h2>
+            <p>The principles that guide everything we do</p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <h4>Quality First</h4>
+              <p>
+                We source products from trusted suppliers to ensure excellence
+                in everything we offer. Our commitment to quality means you can
+                shop with confidence.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <h4>Community Focus</h4>
+              <p>
+                We're committed to supporting and growing our local community.
+                As a family-owned business, we understand the importance of
+                strong community bonds.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h4>Customer Care</h4>
+              <p>
+                Your satisfaction is our top priority. We strive to provide a
+                welcoming shopping experience and personalized service to meet
+                your needs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section-py">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p>The dedicated people behind Dhakal Multi Store</p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="zoom-in">
+            <div class="team-card text-center">
+              <img
+                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/man-vector-design-template-1ba90da9b45ecf00ceb3b8ae442ad32c_screen.jpg?ts=1601484738"
+                alt="Bishnuprasad Dhakal" />
+              <h4>Bishnuprasad Dhakal</h4>
+              <p class="text-muted">Founder & CEO</p>
+              <p class="px-3 pb-3">
+                With over 15 years of experience in retail, Bishnuprasad founded
+                Dhakal Multi Store with a vision to serve the community with
+                quality products.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="team-card text-center">
+              <img
+                src="https://www.svgrepo.com/show/16242/woman.svg"
+                alt="Nirmala Dhakal" />
+              <h4>Nirmala Dhakal</h4>
+              <p class="text-muted">Co-Founder & Manager</p>
+              <p class="px-3 pb-3">
+                Nirmala oversees daily operations and customer relations,
+                ensuring that every visit to our store is a pleasant experience.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-card text-center">
+              <img
+                src="https://cdn.pixabay.com/photo/2024/02/02/04/20/men-8547227_640.png"
+                alt="Nishan Dhakal" />
+              <h4>Nishan Dhakal</h4>
+              <p class="text-muted">Technical Coordinator</p>
+              <p class="px-3 pb-3">
+                Part of the technical team, managing and optimizing the store’s
+                digital infrastructure to ensure smooth operations and an
+                enhanced customer experience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section-py bg-light">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="mb-4">
+              <p class="lead">
+                <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                Shankharapur 01 Nanglebhare, Kathmandu
+              </p>
+              <p class="lead">
+                <i class="fas fa-clock text-primary me-2"></i>
+                Open Daily: 7 AM - 8 PM
+              </p>
+              <p>
+                We're conveniently located in the heart of Shankharapur, making
+                us easily accessible to the local community. Stop by and
+                experience our wide selection of products and friendly service!
+              </p>
+            </div>
+            <div class="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3521.2700970172955!2d85.53315429999999!3d27.764670199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb0184c86ad069%3A0xfa9938efa1de08dd!2sDhakal%20Multi%20Store!5e1!3m2!1sen!2snp!4v1742568760599!5m2!1sen!2snp"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <img
+              src="https://img.freepik.com/premium-vector/2d-shop-vector_1261583-2923.jpg?semt=ais_hybrid"
+              alt="Store Interior"
+              class="img-fluid rounded-3" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section-py">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-8 mx-auto" data-aos="fade-up">
+            <h2 class="section-title">Ready to Experience the Difference?</h2>
+            <p class="lead mb-4">
+              Visit Dhakal Multi Store today and discover why we've been the
+              trusted choice for the Shankharapur community for over a decade.
+            </p>
+            <div class="d-flex justify-content-center">
+              <a href="contact.html" class="btn btn-custom">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <h5>About Us</h5>
+            <p>
+              Dhakal Multi Store - your trusted source for quality products and
+              services since 2013. Serving the Shankharapur community with
+              pride.
+            </p>
+            <div class="footer-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <h5>Quick Links</h5>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About Us</a>
+              <a href="services.html">Services</a>
+              <a href="contact.html">Contact Us</a>
+            </div>
+          </div>
+          
+
+          <div class="col-lg-3 col-md-6">
+            <h5>Contact Info</h5>
+            <div class="footer-contact">
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Shankharapur 01 Nanglebhare, Kathmandu, Nepal</span>
+              </p>
+              <p>
+                <i class="fas fa-phone-alt"></i>
+                <span>+977 9840566159</span>
+              </p>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <span>info@dhakalmultistore.com.np</span>
+              </p>
+              <p>
+                <i class="fas fa-clock"></i>
+                <span>Open Daily: 7am - 8pm</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <h5>Newsletter</h5>
+            <div class="footer-newsletter">
+              <p>
+                Subscribe to our newsletter to get updates about our products
+                and offers.
+              </p>
+              <form class="newsletter-form">
+                <input type="email" placeholder="Your Email" required />
+                <button type="submit">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+              <p>
+                We respect your privacy and will never share your information.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Dhakal Multi Store. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Custom Scripts -->
+    <script>
+      // Initialize AOS animations
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+        });
+
+        // Add padding to body to account for fixed navbar
+        const navbar = document.querySelector(".navbar");
+        document.body.style.paddingTop = navbar.offsetHeight + "px";
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
