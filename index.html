@@ -3,8 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dhakal Multi Store </title>
+    <title>Dhakal Multi Store</title>
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <!-- Bootstrap CSS -->
     <link
@@ -25,6 +31,10 @@
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
       rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
     <style>
       :root {
@@ -393,6 +403,28 @@
           justify-content: center;
         }
       }
+      .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
     </style>
   </head>
   <body>
@@ -444,6 +476,51 @@
         </div>
       </nav>
     </header>
+
+    <div class="social-float">
+      <div class="main-button" id="toggle-button">
+        <i class="fas fa-comments"></i>
+      </div>
+
+      <div class="social-icons " id="social-menu">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          class="social-icon facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a
+          href="https://twitter.com"
+          target="_blank"
+          class="social-icon twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          class="social-icon instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          class="social-icon linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a
+          href="https://wa.me/1234567890"
+          target="_blank"
+          class="social-icon whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a
+          href="viber://chat?number=+1234567890"
+          target="_blank"
+          class="social-icon viber">
+          <i class="fab fa-viber"></i>
+        </a>
+      </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -839,20 +916,11 @@
       </div>
     </footer>
 
-    <!-- nepali translate-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            includedLanguages: "en,ne",
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          },
-          "google_translate_element"
-        );
-      }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script type="text/javascript" src="./script.js"></script>
     <script
       type="text/javascript"
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
