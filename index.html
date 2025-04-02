@@ -4,9 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dhakal Multi Store</title>
+    <meta property="og:title" content="Dhakal Multi Store" />
+    <meta name="twitter:title" content="Dhakal Multi Store" />
+    <!-- Primary Meta Tags -->
+    <meta
+      name="title"
+      content="Dhakal Multi Store - Quality Products in Shankharapur" />
+    <meta
+      name="description"
+      content="Your trusted source for groceries, electric items, hardware, petroleum products, pesticides, and seasonal plant seeds in Shankharapur, Nepal." />
+    <meta
+      name="keywords"
+      content="Dhakal Multi Store, multi store Nepal, Shankharapur store, groceries, hardware store, electric items, Nanglebhare shop" />
+    <meta name="author" content="Dhakal Multi Store" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dhakalmultistore.com.np/" />
+    <meta
+      property="og:title"
+      content="Dhakal Multi Store - Quality Products in Shankharapur" />
+    <meta
+      property="og:description"
+      content="Your trusted source for groceries, electric items, hardware, petroleum products, pesticides, and seasonal plant seeds in Shankharapur, Nepal." />
+    <meta
+      property="og:image"
+      content="https://dhakalmultistore.com.np/assets/images/store-front.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://dhakalmultistore.com.np/" />
+    <meta
+      property="twitter:title"
+      content="Dhakal Multi Store - Quality Products in Shankharapur" />
+    <meta
+      property="twitter:description"
+      content="Your trusted source for groceries, electric items, hardware, petroleum products, pesticides, and seasonal plant seeds in Shankharapur, Nepal." />
+    <meta
+      property="twitter:image"
+      content="https://dhakalmultistore.com.np/assets/images/store-front.jpg" />
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
 
-    <link rel="stylesheet" href="./style.css" />
+    <!-- Schema.org for Google -->
+    <link rel="canonical" href="https://dhakalmultistore.com.np/" />
 
     <link
       rel="stylesheet"
@@ -45,6 +88,50 @@
     <!-- AOS Animation JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "Dhakal Multi Store",
+        "image": "https://dhakalmultistore.com.np/assets/images/store-front.jpg",
+        "description": "Your trusted source for quality products for over a decade in Shankharapur.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Shankharapur 01 Nanglebhare",
+          "addressLocality": "Kathmandu",
+          "addressRegion": "Bagmati",
+          "postalCode": "44600",
+          "addressCountry": "NP"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "27.764670",
+          "longitude": "85.533154"
+        },
+        "telephone": "+9779840566159",
+        "email": "info@dhakalmultistore.com.np",
+        "url": "https://dhakalmultistore.com.np",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "07:00",
+          "closes": "20:00"
+        },
+        "priceRange": "₨",
+        "sameAs": [
+          "https://facebook.com/dhakalmultistore",
+          "https://instagram.com/dhakalmultistore"
+        ]
+      }
+    </script>
     <style>
       :root {
         --primary-color: #3a6ea5;
@@ -524,6 +611,97 @@
           opacity: 0;
         }
       }
+
+      /* Social media icon of fixed bottom*/
+      .social-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+      }
+
+      .main-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #4a90e2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: transform 0.3s, background-color 0.3s;
+        z-index: 1001;
+        position: relative; /* To ensure it stays on top */
+      }
+
+      .main-button:hover {
+        transform: scale(1.1);
+      }
+
+      .main-button i {
+        color: white;
+        font-size: 24px;
+      }
+
+      .social-icons {
+        position: absolute;
+        bottom: 80px; /* Increased to prevent overlap with main button */
+        right: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        visibility: hidden;
+      }
+
+      .social-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        text-decoration: none; /* Remove underlines */
+      }
+
+      /* Social icon specific styles */
+      .facebook {
+        background-color: #3b5998;
+      }
+
+      .twitter {
+        background-color: #1da1f2;
+      }
+
+      .instagram {
+        background: linear-gradient(
+          45deg,
+          #f09433,
+          #e6683c,
+          #dc2743,
+          #cc2366,
+          #bc1888
+        );
+      }
+
+      .linkedin {
+        background-color: #0077b5;
+      }
+
+      .whatsapp {
+        background-color: #25d366;
+      }
+
+      .viber {
+        background-color: #7360f2;
+      }
+
+      .social-icon i {
+        color: white;
+        font-size: 22px;
+      }
     </style>
   </head>
   <body>
@@ -710,8 +888,8 @@
             <h2 class="section-title">About Dhakal Multi Store</h2>
             <p>
               Welcome to Dhakal Multi Store, your trusted source for quality
-              products for over a decade. Our store is located in the heart of
-              Shankharapur, specifically at Shankharapur 01 Nanglebhare.
+              products for over a decade. Our store is located at Shankharapur
+              01 Nanglebhare.
             </p>
             <p>
               We pride ourselves on delivering exceptional customer service and
