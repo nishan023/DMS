@@ -94,21 +94,6 @@
         width: 100%;
       }
 
-      .social-icons {
-        display: flex;
-        gap: 15px;
-      }
-
-      .social-icons a {
-        color: var(--primary-color);
-        transition: transform 0.3s, color 0.3s;
-      }
-
-      .social-icons a:hover {
-        color: var(--secondary-color);
-        transform: translateY(-3px);
-      }
-
       /* Hero Section */
       .hero {
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -401,6 +386,7 @@
         .social-icons {
           margin-top: 15px;
           justify-content: center;
+          text-decoration: none;
         }
       }
       .whatsapp-float {
@@ -424,6 +410,110 @@
 
       .whatsapp-float:hover {
         transform: scale(1.1);
+      }
+
+      .social-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        text-decoration: none;
+      }
+
+      .main-button {
+        width: 60px;
+        height: 60px;
+        background-color: #4a90e2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .main-button:hover {
+        transform: scale(1.05);
+      }
+
+      .main-button.open {
+        transform: rotate(45deg);
+      }
+
+      .social-icons-menu {
+        position: absolute;
+        bottom: 70px;
+        right: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s, visibility 0.3s;
+        text-decoration: none;
+      }
+
+      .social-icons-menu.visible {
+        visibility: visible;
+        opacity: 1;
+        text-decoration: none;
+      }
+
+      .social-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        transition: transform 0.3s, opacity 0.3s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      }
+
+      .social-icon.facebook {
+        background-color: #3b5998;
+      }
+      .social-icon.twitter {
+        background-color: #1da1f2;
+      }
+      .social-icon.instagram {
+        background-color: #e1306c;
+      }
+      .social-icon.linkedin {
+        background-color: #0077b5;
+      }
+      .social-icon.whatsapp {
+        background-color: #25d366;
+      }
+      .social-icon.viber {
+        background-color: #7360f2;
+      }
+
+      .social-icon:hover {
+        transform: scale(1.1) !important;
+      }
+
+      .ripple {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+      }
+
+      @keyframes ripple {
+        to {
+          transform: scale(2.5);
+          opacity: 0;
+        }
       }
     </style>
   </head>
@@ -466,12 +556,6 @@
                 <a class="nav-link" href="contact.html">Contact Us</a>
               </li>
             </ul>
-
-            <div class="social-icons d-none d-lg-flex">
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
           </div>
         </div>
       </nav>
@@ -482,7 +566,7 @@
         <i class="fas fa-comments"></i>
       </div>
 
-      <div class="social-icons " id="social-menu">
+      <div class="social-icons-menu" id="social-menu">
         <a
           href="https://facebook.com"
           target="_blank"
@@ -962,6 +1046,86 @@
               behavior: "smooth",
             });
           });
+        });
+      });
+
+      $(document).ready(function () {
+        const toggleButton = $("#toggle-button");
+        const socialMenu = $("#social-menu");
+        const socialIcons = $(".social-icon");
+        let isOpen = false;
+
+        // Add ripple effect function
+        function createRipple(event) {
+          const button = event.currentTarget;
+          const circle = document.createElement("span");
+          const diameter = Math.max(button.clientWidth, button.clientHeight);
+          const radius = diameter / 2;
+
+          circle.style.width = circle.style.height = `${diameter}px`;
+          circle.style.left = `${
+            event.clientX - button.getBoundingClientRect().left - radius
+          }px`;
+          circle.style.top = `${
+            event.clientY - button.getBoundingClientRect().top - radius
+          }px`;
+          circle.classList.add("ripple");
+
+          const ripple = button.querySelector(".ripple");
+          if (ripple) {
+            ripple.remove();
+          }
+
+          button.appendChild(circle);
+        }
+
+        // Add ripple effect event
+        toggleButton.on("click", function (e) {
+          createRipple(e);
+
+          toggleButton.toggleClass("open");
+
+          if (!isOpen) {
+            // Show menu
+            socialMenu.addClass("visible");
+            toggleButton.css("background-color", "#E74C3C");
+
+            // Animate icons with staggered effect
+            socialIcons.each(function (index) {
+              setTimeout(() => {
+                $(this).css({
+                  transform: "scale(1)",
+                  opacity: "1",
+                });
+              }, 50 + index * 60);
+            });
+          } else {
+            // Hide icons with reverse order animation
+            toggleButton.css("background-color", "#4A90E2");
+
+            socialIcons.each(function (index, el) {
+              const reverseIndex = socialIcons.length - 1 - index;
+              setTimeout(() => {
+                $(el).css({
+                  transform: "scale(0)",
+                  opacity: "0",
+                });
+              }, 50 + reverseIndex * 40);
+            });
+
+            // Hide the menu after animations complete
+            setTimeout(function () {
+              socialMenu.removeClass("visible");
+            }, 400);
+          }
+
+          isOpen = !isOpen;
+        });
+
+        // Initialize icons to scale(0)
+        socialIcons.css({
+          transform: "scale(0)",
+          opacity: "0",
         });
       });
     </script>
